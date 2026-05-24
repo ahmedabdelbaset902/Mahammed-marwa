@@ -1,0 +1,211 @@
+/* =========================
+   SCHEDULE (LUXURY CLEAN)
+========================= */
+.schedule{
+    padding:120px 20px;
+    text-align:center;
+}
+
+/* =========================
+   TITLE (SOFT LUXURY)
+========================= */
+.schedule-title{
+    position: relative;
+    display: inline-block;
+
+    font-family:'Great Vibes', cursive;
+    font-size:40px;
+
+    color:#e84b8a;
+
+    letter-spacing:2px;
+
+    margin-bottom:80px;
+
+    text-shadow:0 20px 40px rgba(232,75,138,.15);
+}
+
+/* elegant line */
+.schedule-title::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-14px;
+    transform:translateX(-50%);
+
+    width:140px;
+    height:1px;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(232,75,138,.8),
+        transparent
+    );
+}
+
+/* soft dot */
+.schedule-title::before{
+    content:"";
+    position:absolute;
+    top:-10px;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:6px;
+    height:6px;
+    border-radius:50%;
+
+    background:#ff6fae;
+    box-shadow:0 0 18px rgba(255,111,174,.4);
+}
+
+/* =========================
+   TIMELINE WRAPPER
+========================= */
+.timeline{
+    position:relative;
+    max-width:780px;
+    margin:auto;
+    padding-left:60px;
+}
+
+/* thin elegant line */
+.timeline::before{
+    content:"";
+    position:absolute;
+    left:18px;
+    top:0;
+    width:1px;
+    height:100%;
+
+    background:linear-gradient(
+        to bottom,
+        rgba(255,111,174,.9),
+        rgba(255,111,174,.2),
+        transparent
+    );
+}
+
+/* =========================
+   ITEM (SMOOTH FLOAT)
+========================= */
+.timeline-item{
+    position:relative;
+    margin-bottom:65px;
+
+    opacity:0;
+    transform:translateY(25px);
+
+    transition:all .8s cubic-bezier(.2,.8,.2,1);
+}
+
+.timeline-item.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* =========================
+   DOT (GLASS + GLOW)
+========================= */
+.circle{
+    position:absolute;
+    left:-24px;
+    top:8px;
+
+    width:14px;
+    height:14px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.25);
+    backdrop-filter:blur(10px);
+
+    border:1px solid rgba(255,111,174,.6);
+
+    box-shadow:
+        0 0 20px rgba(255,111,174,.35),
+        inset 0 0 8px rgba(255,255,255,.4);
+
+    transform:scale(0);
+    transition:.4s ease;
+}
+
+.timeline-item.show .circle{
+    transform:scale(1);
+}
+
+/* pulsing effect */
+.circle::after{
+    content:"";
+    position:absolute;
+    inset:-8px;
+    border-radius:50%;
+    background:rgba(255,111,174,.2);
+    animation:pulseDot 2.5s infinite;
+}
+
+@keyframes pulseDot{
+    0%{ transform:scale(.6); opacity:.6; }
+    100%{ transform:scale(1.4); opacity:0; }
+}
+
+/* =========================
+   CONTENT (CLEAN LUXURY TEXT)
+========================= */
+.timeline .content{
+    text-align:left;
+    padding-left:20px;
+}
+
+/* title */
+.content h3{
+    font-size:24px;
+    font-weight:600;
+
+    color:#4a1b2f;
+
+    margin-bottom:6px;
+
+    transition:.3s ease;
+}
+
+/* time */
+.content span{
+    font-size:12px;
+    letter-spacing:2px;
+
+    color:rgba(0,0,0,.55);
+
+    display:block;
+    margin-bottom:10px;
+}
+
+/* description */
+.details{
+    font-size:15px;
+    color:rgba(0,0,0,.75);
+    line-height:1.8;
+}
+
+/* arabic */
+.details-ar{
+    font-size:14px;
+    color:rgba(0,0,0,.7);
+    line-height:1.8;
+    direction:rtl;
+}
+
+/* hover */
+.timeline-item:hover h3{
+    color:#ff4f97;
+    transform:translateX(4px);
+}
+
+/* =========================
+   SOFT CARD FEEL ON HOVER (OPTIONAL)
+========================= */
+.timeline-item:hover .content{
+    transform:translateX(6px);
+    transition:.4s ease;
+}
