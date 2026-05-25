@@ -51,7 +51,6 @@ const bgVideo = document.querySelector(".bg-video");
 
 window.addEventListener("load", () => {
 
-    /* ⛔ وقف الفيديوهات */
     const stopVideo = (v) => {
         if (!v) return;
         v.pause();
@@ -63,8 +62,9 @@ window.addEventListener("load", () => {
     stopVideo(cardVideo);
     stopVideo(bgVideo);
 
-    /* ⛔ منع السكرول */
+    /* ⛔ منع السكروول */
     document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
 
     /* ⛔ تجهيز الموسيقى */
     if (music) {
@@ -73,10 +73,12 @@ window.addEventListener("load", () => {
         music.volume = 0;
     }
 
-    /* ⛔ تجهيز الصفحة */
+    /* ⛔ تجهيز main (مهم جدًا) */
     if (main) {
         main.style.opacity = "0";
-        main.style.transform = "translateY(20px)";
+        main.style.transform = "translateY(40px)";
+        main.style.visibility = "hidden";
+        main.style.display = "block";
     }
 
     if (scene) {
@@ -100,8 +102,7 @@ function openEnvelope() {
     const playVideo = (v) => {
         if (!v) return;
         v.muted = true;
-        const p = v.play();
-        if (p) p.catch(() => {});
+        v.play().catch(() => {});
     };
 
     playVideo(heroVideo);
@@ -113,14 +114,12 @@ function openEnvelope() {
         music.currentTime = 0;
         music.volume = 0;
 
-        const playPromise = music.play();
-        if (playPromise) playPromise.catch(() => {});
+        music.play().catch(() => {});
 
         let vol = 0;
         const fade = setInterval(() => {
             vol += 0.02;
             music.volume = Math.min(vol, 0.4);
-
             if (vol >= 0.4) clearInterval(fade);
         }, 60);
     }
@@ -135,24 +134,30 @@ function openEnvelope() {
         `;
     }
 
-    /* ✨ إخفاء scene (smooth) */
+    /* ✨ إخفاء scene */
     if (scene) {
         scene.style.transition = "all 1.2s ease";
         scene.style.opacity = "0";
         scene.style.transform = "scale(1.05)";
     }
 
-    /* ✨ فتح الموقع */
+    /* ✨ إظهار الموقع بشكل مضمون */
     setTimeout(() => {
 
         if (main) {
             main.style.transition = "all 1.4s ease";
             main.style.opacity = "1";
             main.style.transform = "translateY(0)";
+            main.style.visibility = "visible";
             main.classList.add("show");
         }
 
-        document.body.style.overflowY = "auto";
+        /* 🔥 أهم سطر لحل مشكلة السكروول */
+        document.body.style.overflow = "auto";
+        document.documentElement.style.overflow = "auto";
+
+        /* ضمان السكروول يشتغل */
+        window.scrollTo(0, 0);
 
     }, 1200);
 }
@@ -165,7 +170,6 @@ function startSite() {
     openEnvelope();
 }
 
-/* أول interaction فقط (iPhone safe) */
 document.addEventListener("click", startSite, { once: true });
 document.addEventListener("touchstart", startSite, { once: true });
 
