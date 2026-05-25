@@ -1,0 +1,344 @@
+.hero{
+    min-height:100vh;
+    position:relative;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    overflow:hidden;
+
+    padding:0 20px;
+
+    isolation:isolate;
+
+    background-image:url(../imges/open.png);
+
+    background-repeat:no-repeat;
+
+    background-position:center center;
+
+    background-size:cover; 
+}
+
+
+/* 💖 hearts */
+.hearts{
+    position:absolute;
+    inset:0;
+    z-index:2;
+    pointer-events:none;
+}
+
+.hearts span{
+    position:absolute;
+    bottom:-40px;
+    font-size:18px;
+    color:#ff4d6d;
+    opacity:.8;
+    filter: drop-shadow(0 0 8px rgba(255,50,80,.5));
+    animation:floatHearts linear infinite;
+}
+/* =========================
+   HERO CONTENT
+========================= */
+
+.hero-content{
+    position:relative;
+    z-index:3;
+
+    max-width:850px;
+
+    padding:30px;
+}
+
+/* =========================
+   ELEMENTS DEFAULT STATE
+========================= */
+
+.ayah,
+.tagline,
+.names,
+.small-text,
+.date-box{
+
+    opacity:0;
+}
+
+/* =========================
+   AYAH
+========================= */
+
+.ayah {
+
+    font-size: 30px;
+
+    color: #000000;
+
+    margin-bottom: 12px;
+
+    line-height: 1.9;
+
+    font-weight: 900;
+
+    font-family: 'Amiri', serif;
+}
+
+/* =========================
+   TAGLINE
+========================= */
+
+.tagline{
+
+    letter-spacing:5px;
+
+    color:#e29608;
+
+    font-size:13px;
+
+    margin-bottom:12px;
+
+    text-transform:uppercase;
+
+    font-family:'Poppins', sans-serif;
+
+    text-shadow:
+        0 2px 0 #6b4e16,
+        0 10px 20px rgba(0,0,0,.4);
+}
+
+/* =========================
+   NAMES
+========================= */
+
+.names{
+
+    font-size:clamp(58px,10vw,92px);
+
+    font-family:'Great Vibes', cursive;
+
+    text-transform: capitalize;
+
+    color:#ffffff;
+
+    margin:12px 0;
+
+    letter-spacing:.5px;
+
+    line-height:1.15;
+
+    position:relative;
+
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+
+    text-rendering:optimizeLegibility;
+
+    text-shadow:
+        0 2px 4px rgba(0,0,0,.25),
+        0 6px 18px rgba(0,0,0,.35),
+        0 0 25px rgba(255,60,90,.18);
+}
+
+/* & */
+.spans{
+
+    color:#f5d08a;
+
+    margin:0 10px;
+
+    font-size:1.1em;
+
+    text-shadow:
+        0 5px 15px rgba(0,0,0,.5);
+}
+
+/* =========================
+   SMALL TEXT
+========================= */
+
+.small-text{
+
+    font-size:34px;
+
+    font-family:'Great Vibes', cursive;
+
+    color:#ffe4b5;
+
+    line-height:1.7;
+
+    margin-bottom:14px;
+
+    text-shadow:
+        0 2px 0 #7a5a2a,
+        0 10px 25px rgba(0,0,0,.5);
+}
+
+/* =========================
+   DATE BOX
+========================= */
+
+.date-box{
+
+    display:inline-block;
+
+    margin-top:14px;
+
+    font-family:'Great Vibes', cursive;
+
+    padding:10px 26px;
+
+    border-radius:40px;
+
+    color:#ffe8b3;
+
+    font-size:30px;
+
+    background: rgba(0,0,0,.35);
+
+    border: 1px solid rgba(255,255,255,.15);
+
+    backdrop-filter: blur(8px);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.4),
+        0 0 20px rgba(255,60,90,.2);
+}
+
+/* =========================
+   ULTRA SLOW START ANIMATIONS
+========================= */
+
+.main.show .ayah{
+
+    animation:
+        fadeUp 2.4s ease forwards;
+
+    animation-delay:.6s;
+}
+
+.main.show .tagline{
+
+    animation:
+        fadeUp 2.4s ease forwards;
+
+    animation-delay:1.2s;
+}
+
+.main.show .names{
+
+    animation:
+        fadeUpLuxury 2.8s ease forwards;
+}
+
+/* names delays */
+
+.main.show .names:nth-of-type(1){
+    animation-delay:1.8s;
+}
+
+.main.show .names:nth-of-type(2){
+    animation-delay:2.6s;
+}
+
+.main.show .names:nth-of-type(3){
+    animation-delay:3.4s;
+}
+
+.main.show .small-text{
+
+    animation:
+        fadeUp 2.4s ease forwards;
+
+    animation-delay:4.2s;
+}
+
+.main.show .date-box{
+
+    animation:
+        fadeUp 2.4s ease forwards;
+
+    animation-delay:5s;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+/* Soft Fade Up */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(80px);
+
+        filter:blur(8px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+
+        filter:blur(0);
+    }
+}
+
+/* Luxury Names */
+
+@keyframes fadeUpLuxury{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(120px)
+            scale(.92);
+
+        filter:blur(12px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter:blur(0);
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    .names{
+        font-size:54px;
+    }
+
+    .small-text{
+        font-size:18px;
+    }
+
+    .date-box{
+        font-size:20px;
+        padding:8px 18px;
+    }
+
+    .ayah{
+        font-size:20px;
+    }
+}
