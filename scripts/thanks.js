@@ -17,7 +17,7 @@ we would love for you to be part of this special celebration
 Your presence will make our happiness complete`;
 
     const arabicText =
-`وجودكم هيكمل فرحتنا 🤍`;
+`وجودكم هيكمل فرحتنا 😘`;
 
     function typeText(element, text, speed, callback) {
 
