@@ -25,7 +25,7 @@
 }
 
 /* =========================================
-   HORIZONTAL SCROLL (SMOOTH IOS FIX)
+   HORIZONTAL SCROLL (FIXED IOS)
 ========================================= */
 
 .timeline{
@@ -36,7 +36,7 @@
     overflow-x:auto;
     overflow-y:hidden;
 
-    scroll-snap-type:x proximity;
+    scroll-snap-type:x mandatory;
 
     padding:12px 16px;
 
@@ -45,10 +45,8 @@
 
     scrollbar-width:none;
 
+    /* مهم: منع iOS bug */
     transform: none;
-
-    scroll-padding-left: 16px;
-    scroll-padding-right: 16px;
 }
 
 .timeline::-webkit-scrollbar{
@@ -86,6 +84,7 @@
 
     transition:.45s ease;
 
+    /* ❌ مهم: شيلنا اللي بيكسر iOS */
     transform: none;
 }
 
