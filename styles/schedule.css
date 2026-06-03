@@ -6,8 +6,7 @@
     width:100%;
     padding:75px 0;
     position:relative;
-
-    overflow: visible;
+    overflow:hidden;
 }
 
 /* =========================================
@@ -25,7 +24,7 @@
 }
 
 /* =========================================
-   TIMELINE SCROLL (🔥 FINAL IOS FIX)
+   TIMELINE SCROLL
 ========================================= */
 
 .timeline{
@@ -33,69 +32,65 @@
     flex-wrap:nowrap;
     gap:18px;
 
-    overflow-x: auto;
-    overflow-y: hidden;
+    overflow-x:auto;
+    overflow-y:hidden;
 
-    -webkit-overflow-scrolling: touch; /* 🔥 أهم سطر */
+    -webkit-overflow-scrolling: touch;
 
-    scroll-snap-type: x mandatory;
+    scroll-snap-type:x mandatory;
+    scroll-behavior:smooth;
 
     padding:16px;
 
-    cursor: grab;
+    scrollbar-width:none;
 
-    scrollbar-width: none;
+    scroll-padding-left:16px;
+    scroll-padding-right:16px;
 
-    touch-action: pan-x;
+    touch-action:pan-x;
 
-    /* 🔥 مهم جدًا لآبل */
-    -webkit-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
-}
-
-.timeline::-webkit-scrollbar{
-    display:none;
+    cursor:grab;
 }
 
 .timeline:active{
     cursor:grabbing;
 }
 
+.timeline::-webkit-scrollbar{
+    display:none;
+}
+
 /* =========================================
-   CARD (🔥 iOS SAFE)
+   CARD
 ========================================= */
 
 .timeline-item{
-    flex: 0 0 85%;
-    max-width: 85%;
+    flex:0 0 75vw;
+    max-width:75vw;
 
-    scroll-snap-align: center;
+    scroll-snap-align:center;
 
-    position: relative;
+    position:relative;
+    border-radius:24px;
 
-    border-radius: 24px;
-    padding: 22px 16px;
+    padding:22px 16px;
 
-    background: linear-gradient(
+    background:linear-gradient(
         145deg,
         rgba(255,255,255,.20),
         rgba(255,255,255,.07)
     );
 
-    border: 1px solid rgba(255,255,255,.18);
+    backdrop-filter:blur(18px);
 
-    /* 🔥 خففنا ده عشان iPhone */
-    backdrop-filter: blur(8px);
+    border:1px solid rgba(255,255,255,.18);
 
-    box-shadow: 0 10px 25px rgba(0,0,0,.12);
+    box-shadow:0 16px 40px rgba(0,0,0,.14),
+               inset 0 1px 1px rgba(255,255,255,.22);
 
-    user-select: none;
+    transition:.45s ease;
 
-    /* 🔥 مهم */
-    -webkit-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
-
-    -webkit-user-drag: none;
+    user-select:none;
 }
 
 /* =========================================
@@ -103,7 +98,9 @@
 ========================================= */
 
 .timeline-item:hover{
-    box-shadow:0 20px 40px rgba(0,0,0,.16);
+    transform:translateY(-7px) scale(1.02);
+    box-shadow:0 26px 50px rgba(0,0,0,.18),
+               0 10px 22px rgba(232,75,138,.14);
 }
 
 /* =========================================
@@ -152,13 +149,16 @@
 
     border:1px solid rgba(255,255,255,.28);
 
-    box-shadow:0 8px 25px rgba(0,0,0,.12);
+    backdrop-filter:blur(14px);
 
-    transition:.3s ease;
+    box-shadow:0 8px 25px rgba(0,0,0,.12),
+               0 0 30px rgba(255,95,162,.14);
+
+    transition:.45s ease;
 }
 
 .timeline-item:hover .top-icon{
-    transform:translateY(-5px) scale(1.05);
+    transform:translateY(-5px) scale(1.06);
 }
 
 /* =========================================
@@ -172,6 +172,8 @@
     margin:0 auto 14px;
     background:#bb8404;
 
+    box-shadow:0 0 15px rgba(255,95,162,.35);
+
     position:relative;
 }
 
@@ -182,6 +184,17 @@
     border-radius:50%;
     border:1px solid rgba(255,95,162,.20);
     animation:pulse 2.8s infinite;
+}
+
+@keyframes pulse{
+    0%{
+        transform:scale(.75);
+        opacity:.8;
+    }
+    100%{
+        transform:scale(1.5);
+        opacity:0;
+    }
 }
 
 /* =========================================
@@ -197,6 +210,7 @@
     margin-bottom:8px;
     color:#4b1730;
     font-family:'Cormorant Garamond', serif;
+    letter-spacing:1px;
 }
 
 .content span{
@@ -214,6 +228,17 @@
     color:rgba(0,0,0,.72);
     line-height:1.7;
     font-size:13px;
+}
+
+/* =========================================
+   DESKTOP
+========================================= */
+
+@media(min-width:1024px){
+    .timeline-item{
+        flex:0 0 320px;
+        max-width:320px;
+    }
 }
 
 /* =========================================
@@ -237,8 +262,9 @@
     }
 
     .timeline-item{
-        flex: 0 0 88%;
-        max-width: 88%;
+        flex:0 0 80vw;
+        max-width:80vw;
+
         padding:20px 14px;
         border-radius:22px;
     }
