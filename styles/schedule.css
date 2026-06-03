@@ -24,7 +24,7 @@
 }
 
 /* =========================================
-   TIMELINE SCROLL
+   TIMELINE SCROLL (OPTIMIZED)
 ========================================= */
 
 .timeline{
@@ -36,9 +36,9 @@
     overflow-y:hidden;
 
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
 
-   scroll-snap-type:x proximity;
-    scroll-behavior:smooth;
+    scroll-snap-type:x proximity;
 
     padding:16px;
 
@@ -61,7 +61,7 @@
 }
 
 /* =========================================
-   CARD
+   CARD (PERFORMANCE OPTIMIZED)
 ========================================= */
 
 .timeline-item{
@@ -81,16 +81,18 @@
         rgba(255,255,255,.07)
     );
 
-    backdrop-filter:blur(18px);
+    backdrop-filter:blur(8px);
 
     border:1px solid rgba(255,255,255,.18);
 
-    box-shadow:0 16px 40px rgba(0,0,0,.14),
-               inset 0 1px 1px rgba(255,255,255,.22);
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
 
-    transition:.45s ease;
+    transition:.4s ease;
 
     user-select:none;
+
+    will-change: transform;
+    transform: translateZ(0);
 }
 
 /* =========================================
@@ -98,9 +100,7 @@
 ========================================= */
 
 .timeline-item:hover{
-    
-    box-shadow:0 26px 50px rgba(0,0,0,.18),
-               0 10px 22px rgba(232,75,138,.14);
+    box-shadow:0 20px 40px rgba(0,0,0,.16);
 }
 
 /* =========================================
@@ -149,16 +149,15 @@
 
     border:1px solid rgba(255,255,255,.28);
 
-    backdrop-filter:blur(14px);
+    backdrop-filter:blur(10px);
 
-    box-shadow:0 8px 25px rgba(0,0,0,.12),
-               0 0 30px rgba(255,95,162,.14);
+    box-shadow:0 6px 20px rgba(0,0,0,.12);
 
-    transition:.45s ease;
+    transition:.4s ease;
 }
 
 .timeline-item:hover .top-icon{
-    transform:translateY(-5px) scale(1.06);
+    transform:translateY(-5px) scale(1.05);
 }
 
 /* =========================================
@@ -172,7 +171,7 @@
     margin:0 auto 14px;
     background:#bb8404;
 
-    box-shadow:0 0 15px rgba(255,95,162,.35);
+    box-shadow:0 0 12px rgba(255,95,162,.3);
 
     position:relative;
 }
