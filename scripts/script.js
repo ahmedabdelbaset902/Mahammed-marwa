@@ -264,7 +264,7 @@ function addToCalendar() {
 
         // Android + Desktop → Google Calendar (timezone-safe)
         const start = "20260605T203000";
-        const end   = "20260606T010000";
+const end   = "20260606T010000";
 
         const googleUrl =
             "https://www.google.com/calendar/render?action=TEMPLATE" +
