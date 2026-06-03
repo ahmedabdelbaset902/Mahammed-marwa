@@ -98,7 +98,7 @@
 ========================================= */
 
 .timeline-item:hover{
-    transform:translateY(-7px) scale(1.02);
+    
     box-shadow:0 26px 50px rgba(0,0,0,.18),
                0 10px 22px rgba(232,75,138,.14);
 }
