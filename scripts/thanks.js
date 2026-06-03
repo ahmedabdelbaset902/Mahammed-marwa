@@ -11,8 +11,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     const englishText =
-`مع بداية فصل جديد في حياتنا،
-يسعدنا ويشرفنا حضوركم ومشاركتكم هذه المناسبة الخاصة.
+`مع بداية فصل جديد في حياتنا ، يسعدنا ويشرفنا ان تكونوا شهوداً علي اجمل لحظات العمر 
 
 Your presence will make our happiness complete`;
 
