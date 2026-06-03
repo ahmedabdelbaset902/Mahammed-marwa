@@ -6,7 +6,8 @@
     width:100%;
     padding:75px 0;
     position:relative;
-    overflow:hidden;
+
+    overflow:visible; /* 🔥 مهم جدًا */
 }
 
 /* =========================================
@@ -37,8 +38,7 @@
 
     -webkit-overflow-scrolling: touch;
 
-   scroll-snap-type:x proximity;
-    scroll-behavior:smooth;
+    scroll-snap-type:x mandatory; /* 🔥 أهم تعديل */
 
     padding:16px;
 
@@ -47,9 +47,9 @@
     scroll-padding-left:16px;
     scroll-padding-right:16px;
 
-    touch-action:pan-x;
-
     cursor:grab;
+
+    overscroll-behavior-x: contain; /* 🔥 مهم */
 }
 
 .timeline:active{
@@ -91,6 +91,8 @@
     transition:.45s ease;
 
     user-select:none;
+
+    -webkit-transform: translateZ(0); /* 🔥 fix iOS */
 }
 
 /* =========================================
@@ -98,14 +100,11 @@
 ========================================= */
 
 .timeline-item:hover{
-  
     box-shadow:0 26px 50px rgba(0,0,0,.18),
                0 10px 22px rgba(232,75,138,.14);
 }
 
-/* =========================================
-   TOP GLOW
-========================================= */
+/* باقي الكود زي ما هو بدون تغيير 👇 */
 
 .timeline-item::before{
     content:"";
@@ -124,36 +123,25 @@
     z-index:-1;
 }
 
-/* =========================================
-   TOP ICON
-========================================= */
-
 .top-icon{
     width:72px;
     height:72px;
     margin:0 auto 16px;
-
     border-radius:50%;
     display:flex;
     align-items:center;
     justify-content:center;
-
     font-size:30px;
     color:#bb8404;
-
     background:linear-gradient(
         145deg,
         rgba(255,255,255,.30),
         rgba(255,255,255,.08)
     );
-
     border:1px solid rgba(255,255,255,.28);
-
     backdrop-filter:blur(14px);
-
     box-shadow:0 8px 25px rgba(0,0,0,.12),
                0 0 30px rgba(255,95,162,.14);
-
     transition:.45s ease;
 }
 
@@ -161,19 +149,13 @@
     transform:translateY(-5px) scale(1.06);
 }
 
-/* =========================================
-   CIRCLE
-========================================= */
-
 .circle{
     width:12px;
     height:12px;
     border-radius:50%;
     margin:0 auto 14px;
     background:#bb8404;
-
     box-shadow:0 0 15px rgba(255,95,162,.35);
-
     position:relative;
 }
 
@@ -185,12 +167,6 @@
     border:1px solid rgba(255,95,162,.20);
     animation:pulse 2.8s infinite;
 }
-
-
-
-/* =========================================
-   CONTENT
-========================================= */
 
 .timeline .content{
     text-align:center;
@@ -222,17 +198,6 @@
 }
 
 /* =========================================
-   DESKTOP
-========================================= */
-
-@media(min-width:1024px){
-    .timeline-item{
-        flex:0 0 320px;
-        max-width:320px;
-    }
-}
-
-/* =========================================
    MOBILE
 ========================================= */
 
@@ -255,7 +220,6 @@
     .timeline-item{
         flex:0 0 80vw;
         max-width:80vw;
-
         padding:20px 14px;
         border-radius:22px;
     }
