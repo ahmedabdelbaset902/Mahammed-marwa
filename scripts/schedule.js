@@ -1,13 +1,13 @@
-const timeline = document.querySelector(".timeline");
+document.addEventListener("DOMContentLoaded", () => {
 
-let isDown = false;
-let startX;
-let scrollLeft;
-let isDragging = false;
+    const timeline = document.querySelector(".timeline");
 
-if (timeline) {
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    let isDragging = false;
 
-    /* ===== DESKTOP ONLY ===== */
+    if (!timeline) return;
 
     timeline.addEventListener("mousedown", (e) => {
         isDown = true;
@@ -40,11 +40,11 @@ if (timeline) {
         timeline.scrollLeft = scrollLeft - walk;
     });
 
-    /* منع الكليك أثناء السحب */
     timeline.addEventListener("click", (e) => {
         if (isDragging) {
             e.preventDefault();
             e.stopPropagation();
         }
     }, true);
-}
+
+});
