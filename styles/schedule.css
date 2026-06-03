@@ -6,7 +6,7 @@
     width:100%;
     padding:75px 0;
     position:relative;
-    overflow:hidden; /* 👈 مهم */
+    overflow:hidden;
 }
 
 /* =========================================
@@ -24,13 +24,12 @@
 }
 
 /* =========================================
-   HORIZONTAL SCROLL (FIXED 100%)
+   TIMELINE SCROLL
 ========================================= */
 
 .timeline{
     display:flex;
     flex-wrap:nowrap;
-
     gap:18px;
 
     overflow-x:auto;
@@ -39,6 +38,7 @@
     -webkit-overflow-scrolling: touch;
 
     scroll-snap-type:x mandatory;
+    scroll-behavior:smooth;
 
     padding:16px;
 
@@ -47,7 +47,7 @@
     scroll-padding-left:16px;
     scroll-padding-right:16px;
 
-    touch-action: pan-x;
+    touch-action:pan-x;
 
     cursor:grab;
 }
@@ -61,11 +61,11 @@
 }
 
 /* =========================================
-   CARD (UPDATED IMPORTANT)
+   CARD
 ========================================= */
 
 .timeline-item{
-    flex:0 0 75vw;   /* 👈 الحل السحري */
+    flex:0 0 75vw;
     max-width:75vw;
 
     scroll-snap-align:center;
@@ -89,6 +89,8 @@
                inset 0 1px 1px rgba(255,255,255,.22);
 
     transition:.45s ease;
+
+    user-select:none;
 }
 
 /* =========================================
@@ -229,7 +231,7 @@
 }
 
 /* =========================================
-   DESKTOP تحسين الشكل
+   DESKTOP
 ========================================= */
 
 @media(min-width:1024px){
@@ -260,7 +262,7 @@
     }
 
     .timeline-item{
-        flex:0 0 80vw; /* 👈 مريح للموبايل */
+        flex:0 0 80vw;
         max-width:80vw;
 
         padding:20px 14px;
