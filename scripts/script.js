@@ -258,37 +258,41 @@ function addToCalendar() {
     const details = "نتشرف بحضوركم حفل زفافنا";
     const location = "قاعة دايموند - قطور غربيه";
 
-    // الأفضل إضافة Z عشان Google Calendar يفهم الوقت صح
-    const start = "20260605T200000Z";
-    const end   = "20260606T000000Z";
-
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 
     if (!isIOS) {
 
-        // ✅ Android + Desktop → Google Calendar
+        // Android + Desktop → Google Calendar (timezone-safe)
+        const start = "20260605T203000";
+        const end   = "20260606T010000";
+
         const googleUrl =
             "https://www.google.com/calendar/render?action=TEMPLATE" +
             "&text=" + encodeURIComponent(title) +
             "&details=" + encodeURIComponent(details) +
             "&location=" + encodeURIComponent(location) +
-            "&dates=" + start + "/" + end;
+            "&dates=" + start + "/" + end +
+            "&ctz=Africa/Cairo";   // 🔥 أهم سطر
 
         window.open(googleUrl, "_blank");
         return;
     }
 
-    // 🍎 iOS → ICS file
+    // iOS → ICS file with timezone
     const icsContent =
 `BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//Wedding//EN
+CALSCALE:GREGORIAN
+BEGIN:VTIMEZONE
+TZID:Africa/Cairo
+END:VTIMEZONE
 BEGIN:VEVENT
 UID:123456
 DTSTAMP:20260601T120000Z
 SUMMARY:${title}
-DTSTART:${start}
-DTEND:${end}
+DTSTART;TZID=Africa/Cairo:20260605T203000
+DTEND;TZID=Africa/Cairo:20260606T010000
 LOCATION:${location}
 DESCRIPTION:${details}
 END:VEVENT
