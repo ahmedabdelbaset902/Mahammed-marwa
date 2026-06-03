@@ -6,8 +6,7 @@
     width:100%;
     padding:75px 0;
     position:relative;
-
-    overflow:visible; /* 🔥 مهم جدًا */
+    overflow:visible;
 }
 
 /* =========================================
@@ -25,7 +24,7 @@
 }
 
 /* =========================================
-   TIMELINE SCROLL
+   TIMELINE SCROLL (OPTIMIZED iOS FIX)
 ========================================= */
 
 .timeline{
@@ -37,8 +36,7 @@
     overflow-y:hidden;
 
     -webkit-overflow-scrolling: touch;
-
-    scroll-snap-type:x mandatory; /* 🔥 أهم تعديل */
+    scroll-snap-type:x mandatory;
 
     padding:16px;
 
@@ -49,7 +47,11 @@
 
     cursor:grab;
 
-    overscroll-behavior-x: contain; /* 🔥 مهم */
+    overscroll-behavior-x: contain;
+
+    /* 🔥 أهم تحسين للأداء */
+    transform: translateZ(0);
+    will-change: scroll-position;
 }
 
 .timeline:active{
@@ -81,18 +83,18 @@
         rgba(255,255,255,.07)
     );
 
-    backdrop-filter:blur(18px);
+    backdrop-filter:blur(14px);
 
     border:1px solid rgba(255,255,255,.18);
 
     box-shadow:0 16px 40px rgba(0,0,0,.14),
                inset 0 1px 1px rgba(255,255,255,.22);
 
-    transition:.45s ease;
+    transition:.35s ease;
 
     user-select:none;
 
-    -webkit-transform: translateZ(0); /* 🔥 fix iOS */
+    -webkit-transform: translateZ(0);
 }
 
 /* =========================================
@@ -104,7 +106,21 @@
                0 10px 22px rgba(232,75,138,.14);
 }
 
-/* باقي الكود زي ما هو بدون تغيير 👇 */
+/* =========================================
+   IMPORTANT iPHONE FIX (🔥 السر الحقيقي)
+========================================= */
+
+.timeline *{
+    -webkit-tap-highlight-color: transparent;
+}
+
+.timeline-item{
+    -webkit-touch-callout: none;
+}
+
+/* =========================================
+   TOP GLOW
+========================================= */
 
 .timeline-item::before{
     content:"";
@@ -123,31 +139,46 @@
     z-index:-1;
 }
 
+/* =========================================
+   TOP ICON
+========================================= */
+
 .top-icon{
     width:72px;
     height:72px;
     margin:0 auto 16px;
+
     border-radius:50%;
     display:flex;
     align-items:center;
     justify-content:center;
+
     font-size:30px;
     color:#bb8404;
+
     background:linear-gradient(
         145deg,
         rgba(255,255,255,.30),
         rgba(255,255,255,.08)
     );
+
     border:1px solid rgba(255,255,255,.28);
+
     backdrop-filter:blur(14px);
+
     box-shadow:0 8px 25px rgba(0,0,0,.12),
                0 0 30px rgba(255,95,162,.14);
-    transition:.45s ease;
+
+    transition:.4s ease;
 }
 
 .timeline-item:hover .top-icon{
     transform:translateY(-5px) scale(1.06);
 }
+
+/* =========================================
+   CIRCLE
+========================================= */
 
 .circle{
     width:12px;
@@ -155,7 +186,9 @@
     border-radius:50%;
     margin:0 auto 14px;
     background:#bb8404;
+
     box-shadow:0 0 15px rgba(255,95,162,.35);
+
     position:relative;
 }
 
@@ -167,6 +200,10 @@
     border:1px solid rgba(255,95,162,.20);
     animation:pulse 2.8s infinite;
 }
+
+/* =========================================
+   CONTENT
+========================================= */
 
 .timeline .content{
     text-align:center;
